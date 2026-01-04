@@ -1,6 +1,6 @@
 # Claude Usage Widget (macOS) — *paused / incomplete*
 
-This was intended to be a native macOS menu-bar + WidgetKit experience that shows Claude usage/credits (session + weekly limits, prepaid balance) with an auto-refreshing desktop widget. The project is currently **on pause and incomplete**.
+This was intended to be a native macOS menu-bar + WidgetKit experience that shows Claude usage/credits (session + weekly limits, prepaid balance) with an auto-refreshing desktop widget. The project is currently **on pause and incomplete**. One key goal was to evaluate the developer experience for building AI-focused apps on macOS/iOS (signing, entitlements, widgets, auto-auth flows).
 
 ## Current state
 - Builds successfully on macOS (Xcode 15+/Swift 5.9, macOS 14+ target).
