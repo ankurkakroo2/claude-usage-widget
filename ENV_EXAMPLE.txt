@@ -1,0 +1,15 @@
+# Claude Usage Widget - Environment Variables Example
+# This file is for reference only
+
+# Note: This widget uses session cookies from claude.ai
+# You don't need API keys - just extract your session cookie from browser
+# See the onboarding flow for instructions on how to find these values
+
+# Your Claude.ai Organization ID (found in URL: /organizations/{ORG_ID}/...)
+CLAUDE_ORG_ID=your-organization-id-here
+
+# Your session cookie from claude.ai (extracted from browser Developer Tools)
+CLAUDE_SESSION_COOKIE=your-session-cookie-here
+
+# Note: These are stored in macOS Keychain, not in .env
+# This file is just for documentation purposes

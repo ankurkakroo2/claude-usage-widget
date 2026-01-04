@@ -1,0 +1,80 @@
+name: ClaudeUsageWidget
+options:
+  bundleIdPrefix: com.claude
+  deploymentTarget:
+    macOS: "14.0"
+  developmentLanguage: en
+
+packages:
+  SweetCookieKit:
+    url: https://github.com/steipete/SweetCookieKit.git
+    from: 0.2.0
+
+settings:
+  SWIFT_VERSION: 5.9
+  MACOSX_DEPLOYMENT_TARGET: 14.0
+
+targets:
+  Shared:
+    type: framework
+    platform: macOS
+    sources:
+      - path: ClaudeUsageWidget/Shared
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.claude.Shared
+      SWIFT_VERSION: 5.9
+      CODE_SIGN_STYLE: Automatic
+      CODE_SIGN_IDENTITY: "-"
+      ENABLE_HARDENED_RUNTIME: NO
+      SKIP_INSTALL: YES
+      GENERATE_INFOPLIST_FILE: YES
+
+  ClaudeUsageWidget:
+    type: application
+    platform: macOS
+    sources:
+      - path: ClaudeUsageWidget/ClaudeUsageWidget
+    entitlements:
+      path: ClaudeUsageWidget/ClaudeUsageWidget.entitlements
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.claude.ClaudeUsageWidget
+      INFOPLIST_KEY_LSUIElement: YES
+      CODE_SIGN_ENTITLEMENTS: ClaudeUsageWidget/ClaudeUsageWidget.entitlements
+      SWIFT_VERSION: 5.9
+      CODE_SIGN_STYLE: Automatic
+      CODE_SIGN_IDENTITY: "-"
+      CODE_SIGNING_ALLOWED: YES
+      CODE_SIGNING_REQUIRED: YES
+      ENABLE_HARDENED_RUNTIME: NO
+      ENABLE_USER_SELECTED_FILES: readwrite
+      ENABLE_APP_SANDBOX: YES
+      CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION: YES
+    dependencies:
+      - target: Shared
+        embed: true
+      - target: ClaudeWidget
+      - package: SweetCookieKit
+        product: SweetCookieKit
+
+  ClaudeWidget:
+    type: app-extension
+    platform: macOS
+    sources:
+      - path: ClaudeUsageWidget/ClaudeWidget
+    entitlements:
+      path: ClaudeUsageWidget/ClaudeWidget.entitlements
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.claude.ClaudeUsageWidget.ClaudeWidget
+      INFOPLIST_KEY_NSExtensionPointIdentifier: com.apple.widgetkit-extension
+      CODE_SIGN_ENTITLEMENTS: ClaudeUsageWidget/ClaudeWidget.entitlements
+      SWIFT_VERSION: 5.9
+      CODE_SIGN_STYLE: Automatic
+      CODE_SIGN_IDENTITY: "-"
+      CODE_SIGNING_ALLOWED: YES
+      CODE_SIGNING_REQUIRED: YES
+      ENABLE_HARDENED_RUNTIME: NO
+      ENABLE_APP_SANDBOX: YES
+      CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION: YES
+    dependencies:
+      - target: Shared
+        embed: false
